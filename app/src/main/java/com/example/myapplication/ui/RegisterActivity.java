@@ -46,10 +46,9 @@ public class RegisterActivity extends AppCompatActivity {
                     UserSQL userSQL = new UserSQL(getBaseContext());
                     if (userSQL.checkUserName(userName)) {
                         Account account = new Account(userName, passWord);
-                        userSQL.addAccount(account);
+                        int accountId = userSQL.addAccount(account);
                         Toast.makeText(getBaseContext(), "Đăng ký thành công!", Toast.LENGTH_SHORT).show();
                         userSQL.test();
-                        int accountId = account.getId();
                         Intent i = new Intent(RegisterActivity.this, UserDetailActivity.class);
                         i.putExtra("accountId",accountId);
                         startActivityForResult(i, 1);

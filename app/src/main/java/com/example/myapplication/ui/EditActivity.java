@@ -59,18 +59,7 @@ public class EditActivity extends AppCompatActivity {
         user = (User) getIntent().getSerializableExtra("user");
         init();
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                R.layout.spinner_item,
-                listPosition);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spPosition.setAdapter(adapter);
-        for(int i = 0; i < listPosition.length; i++){
-            if(listPosition[i].compareToIgnoreCase(user.getRole())==0){
-                spPosition.setSelection(i);
-                break;
-            }
-        }
-        employImage.setImageURI(Uri.parse(user.getImage()));
+//        employImage.setImageURI(Uri.parse(user.getImage()));
         edtName.setText(user.getName());
         txtBirth.setText(user.getBirthday());
         if(user.getGender().compareToIgnoreCase("male")==0) btnMale.setChecked(true);

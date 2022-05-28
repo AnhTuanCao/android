@@ -2,13 +2,14 @@ package com.example.myapplication.model;
 
 import androidx.room.PrimaryKey;
 
+import com.example.myapplication.db.UserSQL;
 import java.io.Serializable;
 
 public class User implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private int id;
     private String name,birthday,gender,image,role;
-
+    private int accountId;
     public User() {
     }
 
@@ -18,6 +19,16 @@ public class User implements Serializable {
         this.gender = gender;
         this.image = image;
         this.role = role;
+    }
+
+    public User(int id, String name, String birthday, String gender, String image, String role, int accountId) {
+        this.id = id;
+        this.name = name;
+        this.birthday = birthday;
+        this.gender = gender;
+        this.image = image;
+        this.role = role;
+        this.accountId = accountId;
     }
 
     public User(int id, String name, String birthday, String gender, String image, String role) {
@@ -31,6 +42,23 @@ public class User implements Serializable {
 
     public int getId() {
         return id;
+    }
+
+    public User(String name, String birthday, String gender, String image, String role, int accountId) {
+        this.name = name;
+        this.birthday = birthday;
+        this.gender = gender;
+        this.image = image;
+        this.role = role;
+        this.accountId = accountId;
+    }
+
+    public int getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(int accountId) {
+        this.accountId = accountId;
     }
 
     public void setId(int id) {
@@ -75,5 +103,17 @@ public class User implements Serializable {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", birthday='" + birthday + '\'' +
+                ", gender='" + gender + '\'' +
+                ", image=" + image +
+                ", role='" + role + '\'' +
+                '}';
     }
 }

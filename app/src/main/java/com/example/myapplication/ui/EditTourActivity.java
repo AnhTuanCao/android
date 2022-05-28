@@ -7,9 +7,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -18,28 +16,32 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.R;
+import com.example.myapplication.db.UserSQL;
+import com.example.myapplication.model.Tour;
+import com.example.myapplication.model.User;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Calendar;
 
-import com.example.myapplication.R;
-import com.example.myapplication.db.UserSQL;
-import com.example.myapplication.model.User;
+public class EditTourActivity extends AppCompatActivity {
 
-public class UserDetailActivity extends AppCompatActivity {
-
-    EditText edtName;
-    TextView txtBirth;
-    Button btnAdd, btnCancel;
+    Tour tour;
+    EditText edtName, edtStartDate, edtTrans, edtDuration, edtTotal;
+    TextView txtStartDate;
+    Button btnSave, btnCancel;
     RadioGroup radioGroup;
-    RadioButton btnMale, btnFemale;
+    RadioButton btnPlane, btnTrain;
     ImageButton btnDate;
+    Spinner spPosition;
     Uri uri;
     ImageView employImage;
     ImageView cameraImage;
@@ -49,42 +51,48 @@ public class UserDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_userdetail);
+        setContentView(R.layout.activity_touredit);
+        tour = (Tour) getIntent().getSerializableExtra("tour");
         init();
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                R.layout.spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        btnAdd.setOnClickListener(new View.OnClickListener() {
+//        employImage.setImageURI(Uri.parse(user.getImage()));
+        edtName.setText(tour.getName());
+        txtStartDate.setText(tour.getStartDate());
+        if(tour.getTrans().compareToIgnoreCase("plane")==0) btnPlane.setChecked(true);
+        else btnTrain.setChecked(true);
+        edtTotal.setText(tour.getTotal());
+        edtDuration.setText(tour.getDuration());
+        btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = getIntent();
                 String name = edtName.getText().toString();
-                String birth = txtBirth.getText().toString();
+                String date = txtStartDate.getText().toString();
                 int tmp = radioGroup.getCheckedRadioButtonId();
-                String image = uri!=null ? uri.toString() : "";
-                String role = "";
-                int accountId = i.getIntExtra("accountId", 0);
-                String gender = "";
-                if(tmp == btnMale.getId()) gender = "Nam";
-                else gender = "Nữ";
-                if (gender.isEmpty() || name.isEmpty() || image.isEmpty() || birth.compareToIgnoreCase("dd/MM/yyyy") == 0) {
+                String image = uri!=null ? uri.toString() : tour.getImg();
+                String duration = edtDuration.getText().toString();
+                String total = edtTotal.getText().toString();
+                String trans = "";
+                if(tmp == btnPlane.getId()) trans = "plane";
+                else trans = "female";
+                if (trans.isEmpty() || name.isEmpty() || image.isEmpty()  || duration.isEmpty() || total.isEmpty() || date.compareToIgnoreCase("dd/MM/yyyy") == 0) {
                     Toast.makeText(getBaseContext(), "Không được để trống thông tin", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     try{
                         UserSQL helper = new UserSQL(getBaseContext());
-//                        helper.addUserAdmin("");
-                        User user = new User(name,birth,gender,image,role);
-                        helper.addUser(user,accountId);
-                        helper.test();
-                        Toast.makeText(getBaseContext(), "Cập nhật thành công", Toast.LENGTH_SHORT).show();
-                        Intent p = new Intent(UserDetailActivity.this, LoginActivity.class);
-                        startActivityForResult(p, 1);
+                        tour.setName(name);
+                        tour.setStartDate(date);
+                        tour.setTrans(trans);
+                        tour.setDuration(duration);
+                        tour.setImg(image);
+                        tour.setTotal(total);
+                        helper.updateTour(tour);
+                        Toast.makeText(getBaseContext(), "Sửa thành công", Toast.LENGTH_SHORT).show();
                         finish();
-                    }catch (NumberFormatException ex){
-                        Toast.makeText(getBaseContext(), "Cập nhật thất bại!", Toast.LENGTH_SHORT).show();
+                    }catch (NumberFormatException ignored){
+
                     }
+
                 }
             }
         });
@@ -106,12 +114,12 @@ public class UserDetailActivity extends AppCompatActivity {
                 DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        Log.d("hiund",dayOfMonth + "/" + (month+1 )+ "/" +year);
-                        txtBirth.setText(dayOfMonth + "/" + (month+1 )+ "/" +year );
+                        txtStartDate.setText(dayOfMonth + "/" + (month+1 )+ "/" +year );
                     }
                 };
-                DatePickerDialog datePickerDialog = new DatePickerDialog(UserDetailActivity.this,R.style.DialogTheme,
+                DatePickerDialog datePickerDialog = new DatePickerDialog(EditTourActivity.this,R.style.DialogTheme,
                         dateSetListener, year, month, day);
+
                 datePickerDialog.show();
                 datePickerDialog.getButton(DatePickerDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#FF1E2F97"));
                 datePickerDialog.getButton(DatePickerDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#FF1E2F97"));
@@ -134,15 +142,19 @@ public class UserDetailActivity extends AppCompatActivity {
             }
         }
     }
+
     public void init(){
         edtName = findViewById(R.id.edt_name);
-        btnAdd = findViewById(R.id.btn_add);
+        edtDuration = findViewById(R.id.edt_duration);
+        edtTotal = findViewById(R.id.edt_total);
+        btnSave = findViewById(R.id.btn_save);
         btnCancel = findViewById(R.id.btn_cancel);
         btnDate = findViewById(R.id.btn_birth);
         radioGroup = findViewById(R.id.btn_group);
-        txtBirth = findViewById(R.id.txt_birth);
-        btnMale = findViewById(R.id.radio_male);
-        btnFemale = findViewById(R.id.radio_female);
+        spPosition = findViewById(R.id.sp_position);
+        txtStartDate = findViewById(R.id.txt_birth);
+        btnTrain = findViewById(R.id.radio_train);
+        btnPlane = findViewById(R.id.radio_plane);
         employImage = findViewById(R.id.employ_image);
         cameraImage = findViewById(R.id.camera);
         employView = findViewById(R.id.image_picker);

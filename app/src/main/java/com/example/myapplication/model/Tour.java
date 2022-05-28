@@ -2,7 +2,9 @@ package com.example.myapplication.model;
 
 import androidx.room.PrimaryKey;
 
-public class Tour {
+import java.io.Serializable;
+
+public class Tour implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private int id;
     private String name,startDate,trans,duration,img,total;

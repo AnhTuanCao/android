@@ -53,32 +53,39 @@
         android:paddingTop="25dp"
         android:orientation="vertical">
         <TextView
-            android:id="@+id/name_employ"
+            android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:text="Họ tên:"/>
+            android:text="Địa điểm:"/>
         <TextView
-            android:id="@+id/birth_employ"
+            android:id="@+id/startDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:textSize="20sp"
-            android:text="Ngày sinh:"/>
+            android:text="Ngày bắt đầu:"/>
         <TextView
-            android:id="@+id/gender_employ"
+            android:id="@+id/trans"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:textSize="20sp"
-            android:text="Giới tính:"/>
+            android:text="Phương tiện:"/>
         <TextView
-            android:id="@+id/position_employ"
+            android:id="@+id/duration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:textSize="20sp"
-            android:text="Chức vụ:"/>
+            android:text="Thời gian:"/>
+        <TextView
+            android:id="@+id/total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:textSize="20sp"
+            android:text="Chi phí:"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

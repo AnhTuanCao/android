@@ -1,5 +1,8 @@
 package com.example.myapplication.model;
 
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
+
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
@@ -20,6 +23,12 @@ public class Account implements Serializable {
         this.username = username;
         this.password = password;
     }
+
+    public Account(int id, String username) {
+        this.id = id;
+        this.username = username;
+    }
+
 
     public Account() {
     }
@@ -55,6 +64,16 @@ public class Account implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", listUser=" + listUser +
+                '}';
     }
 
 }

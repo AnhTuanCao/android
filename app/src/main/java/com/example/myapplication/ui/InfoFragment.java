@@ -1,6 +1,7 @@
 package com.example.myapplication.ui;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
+import com.example.myapplication.db.UserSQL;
 
 public class InfoFragment extends Fragment {
     Button btnLogout, btnChangePass;
@@ -26,8 +28,11 @@ public class InfoFragment extends Fragment {
         btnChangePass = view.findViewById(R.id.btn_change_pass);
         txtUsername = view.findViewById(R.id.txt_username);
         txtRole = view.findViewById(R.id.txt_role);
-
         txtUsername.setText(MainActivity.account.getUsername());
+        if (MainActivity.account.getId() == 1 ){
+            txtRole.setText("Admin");
+        }
+        else txtRole.setText("Khách hàng");
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

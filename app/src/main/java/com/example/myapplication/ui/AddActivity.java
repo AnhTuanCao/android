@@ -135,6 +135,8 @@ public class AddActivity extends AppCompatActivity {
     }
     public void init(){
         edtName = findViewById(R.id.edt_name);
+        edtTotal = findViewById(R.id.edt_total);
+        edtDuration = findViewById(R.id.edt_duration);
         btnAdd = findViewById(R.id.btn_add);
         btnCancel = findViewById(R.id.btn_cancel);
         btnDate = findViewById(R.id.btn_birth);

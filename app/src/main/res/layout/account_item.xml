@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="356dp"
-    android:layout_height="105dp"
+    android:layout_width="match_parent"
+    android:layout_height="130dp"
     android:orientation="horizontal"
     android:padding="10dp"
     android:layout_marginBottom="15dp">
@@ -18,36 +18,48 @@
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="5dp">
         <TextView
-            android:id="@+id/name"
-            android:text="Địa điểm"
+            android:id="@+id/username"
+            android:text="User"
             android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <TextView
-            android:id="@+id/duration"
-            android:text="Thời gian"
+            android:id="@+id/name"
+            android:text="Username: "
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/gender"
+            android:text="Giới tính: "
             android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
+        <TextView
+            android:id="@+id/role"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Bạn là: " />
     </LinearLayout>
+
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="238dp"
         android:layout_height="match_parent"
         android:gravity="end|center_vertical">
 
         <ImageButton
             android:id="@+id/btn_edit"
-            android:layout_width="13dp"
-            android:layout_height="22dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_marginRight="10dp"
-            android:background="@null"
-            android:src="@drawable/ic_edit"/>
+            android:background="@null" />
+
         <ImageButton
             android:id="@+id/btn_delete"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:background="@null"
-            android:src="@drawable/ic_delete"/>
+            android:background="@null" />
     </LinearLayout>
 </LinearLayout>

@@ -8,6 +8,9 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.myapplication.model.Account;
+import com.example.myapplication.model.Tour;
+import com.example.myapplication.model.User;
+import com.example.myapplication.ui.CustomerFragment;
 import com.example.myapplication.ui.HomeFragment;
 import com.example.myapplication.ui.InfoFragment;
 import com.example.myapplication.ui.SearchFragment;
@@ -16,12 +19,15 @@ import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends AppCompatActivity {
     public static Account account;
+    public static Tour tour;
+    public static User user;
     BottomNavigationView bottomNavigationView;
 
 
     HomeFragment homeFragment = new HomeFragment();
     SearchFragment searchFragment = new SearchFragment();
     InfoFragment infoFragment = new InfoFragment();
+    CustomerFragment customerFragment = new CustomerFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +48,9 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.menu2:
                         setCurrentFragment(searchFragment);
+                        break;
+                    case R.id.menu4:
+                        setCurrentFragment(customerFragment);
                         break;
                     case R.id.menu3:
                         setCurrentFragment(infoFragment);

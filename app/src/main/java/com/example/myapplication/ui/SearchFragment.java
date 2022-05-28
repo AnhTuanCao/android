@@ -27,7 +27,7 @@ import com.example.myapplication.model.User;
 
 import java.util.List;
 
-public class SearchFragment extends Fragment implements ItemAdapter.OnItemListener {
+public class SearchFragment extends Fragment implements ItemAdapter.OnItemListener, TourAdapter.OnItemListener {
     private final String[] listPosition = {
             "Khách hàng", "Tour"
     };
@@ -49,6 +49,8 @@ public class SearchFragment extends Fragment implements ItemAdapter.OnItemListen
         rcv = view.findViewById(R.id.rcv);
         btnSearch = view.findViewById(R.id.btn_search);
         edtSearch = view.findViewById(R.id.edt_search);
+        btnCus = view.findViewById(R.id.radio_customer);
+        btnTour = view.findViewById(R.id.radio_tour);
         txtStatistic = view.findViewById(R.id.txt_statistic);
         adapter = new ItemAdapter(getContext());
         tourAdapter = new TourAdapter(getContext());
@@ -74,23 +76,23 @@ public class SearchFragment extends Fragment implements ItemAdapter.OnItemListen
             Toast.makeText(getContext(), "Vui lòng nhập thông tin tìm kiếm!", Toast.LENGTH_SHORT).show();
         }
         else{
-//            if(btnCus.isChecked()){
-//
-//            }
-            listUser = sqLiteHelper.search(searchText);
-            adapter = new ItemAdapter(getContext(), listUser, true);
-            adapter.setClickListener(this);
-            LinearLayoutManager manager = new LinearLayoutManager(getContext());
-            rcv.setLayoutManager(manager);
-            rcv.setAdapter(adapter);
-//            else if(btnTour.isChecked()){
-//                listTour = sqLiteHelper.searchTour(searchText);
-//                tourAdapter = new TourAdapter(getContext(), listTour, true);
-//                tourAdapter.setClickListener((TourAdapter.OnItemListener) this);
-//                LinearLayoutManager manager = new LinearLayoutManager(getContext());
-//                rcv.setLayoutManager(manager);
-//                rcv.setAdapter(tourAdapter);
-//            }
+            if(btnCus.isChecked()){
+                listUser = sqLiteHelper.search(searchText);
+                adapter = new ItemAdapter(getContext(), listUser, true);
+                adapter.setClickListener(this);
+                LinearLayoutManager manager = new LinearLayoutManager(getContext());
+                rcv.setLayoutManager(manager);
+                rcv.setAdapter(adapter);
+            }
+
+            else if(btnTour.isChecked()){
+                listTour = sqLiteHelper.searchTour(searchText);
+                tourAdapter = new TourAdapter(getContext(), listTour, true);
+                tourAdapter.setClickListener(this);
+                LinearLayoutManager manager = new LinearLayoutManager(getContext());
+                rcv.setLayoutManager(manager);
+                rcv.setAdapter(tourAdapter);
+            }
         }
 
     }
