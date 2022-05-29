@@ -10,7 +10,7 @@
         android:title="Tìm kiếm"/>
 
     <item android:id="@+id/menu4"
-        android:icon="@drawable/ic_user"
+        android:icon="@drawable/icon_people"
         android:title="Khách hàng"/>
 
     <item android:id="@+id/menu3"

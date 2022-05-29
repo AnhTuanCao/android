@@ -56,7 +56,7 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.ItemView
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
         Account account = listAccount.get(position);
         holder.txtName.setText("User: " + account.getUsername());
-        holder.txtGender.setText("Giới tính: " + account.getId());
+//        holder.txtGender.setText("Giới tính: " + account.getId());
 //        UserSQL userSQL = new UserSQL();
 //        userSQL.get
         if(checkSearch) {
@@ -81,14 +81,14 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.ItemView
     }
 
     public class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        TextView txtName, txtBirthday, txtGender;
+        TextView txtName, txtBirthday, txtGender,txtRole;
         ImageView img;
         ImageButton btnEdit, btnDelete;
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
             txtName = itemView.findViewById(R.id.name);
             txtBirthday = itemView.findViewById(R.id.duration);
-            txtGender = itemView.findViewById(R.id.gender);
+//            txtGender = itemView.findViewById(R.id.gender);
             img = itemView.findViewById(R.id.im);
             btnDelete = itemView.findViewById(R.id.btn_delete);
             itemView.setOnClickListener(this);

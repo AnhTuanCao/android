@@ -40,7 +40,7 @@ public class DetailTourActivity extends AppCompatActivity{
         else txtTrans.setText("Phương tiện: Tàu hỏa");
         txtDuration.setText("Thời gian: " + tour.getDuration());
         txtTotal.setText("Chi phí: " + tour.getTotal());
-//        im.setImageURI(Uri.parse(tour.getImage()));
+//        im.setImageURI(Uri.parse(tour.getImg()));
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

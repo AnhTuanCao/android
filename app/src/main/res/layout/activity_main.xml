@@ -27,5 +27,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:backgroundTint="@color/cardview_dark_background"
         app:menu="@menu/menu" />
 </androidx.constraintlayout.widget.ConstraintLayout>
