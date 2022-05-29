@@ -90,7 +90,6 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.ItemView
             txtBirthday = itemView.findViewById(R.id.duration);
             txtGender = itemView.findViewById(R.id.gender);
             img = itemView.findViewById(R.id.im);
-            btnEdit = itemView.findViewById(R.id.btn_edit);
             btnDelete = itemView.findViewById(R.id.btn_delete);
             itemView.setOnClickListener(this);
         }
@@ -102,7 +101,7 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.ItemView
     }
     public Account getItem(int position){
         return listAccount.get(position);
-    } //ham nay day ong, no k chay a hay sao.Toi chua lay dc data cua user
+    }
     public interface OnItemListener{
         public void onClick(View view, int position);
     }

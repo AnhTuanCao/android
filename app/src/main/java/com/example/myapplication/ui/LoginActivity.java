@@ -50,6 +50,7 @@ public class LoginActivity extends AppCompatActivity {
                             MainActivity.account = account;
                             Toast.makeText(getBaseContext(), "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
                             Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                            i.putExtra("account",account);
                             startActivityForResult(i, 1);
                         }
                     }

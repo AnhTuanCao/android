@@ -14,7 +14,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication.MainActivity;
 import com.example.myapplication.db.UserSQL;
+import com.example.myapplication.model.Account;
 import com.example.myapplication.model.Tour;
 
 import java.util.ArrayList;
@@ -49,6 +51,7 @@ public class TourAdapter extends RecyclerView.Adapter<TourAdapter.ItemViewHolder
     @Override
     public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.tour_item, parent, false);
+//        Account account = getIntent
         return new ItemViewHolder(view);
     }
 
@@ -58,7 +61,8 @@ public class TourAdapter extends RecyclerView.Adapter<TourAdapter.ItemViewHolder
         holder.txtName.setText("Địa điểm: " + tour.getName());
         holder.txtDuration.setText("Thời gian: " + tour.getDuration());
 //        holder.img.setImageURI(Uri.parse(tour.getImg()));
-        if(checkSearch) {
+        String accountName = MainActivity.account.getUsername();
+        if(accountName.equalsIgnoreCase("anhtuancao") == false) {
             holder.btnEdit.setVisibility(View.GONE);
             holder.btnDelete.setVisibility(View.GONE);
         }

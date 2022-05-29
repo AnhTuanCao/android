@@ -29,7 +29,7 @@ public class InfoFragment extends Fragment {
         txtUsername = view.findViewById(R.id.txt_username);
         txtRole = view.findViewById(R.id.txt_role);
         txtUsername.setText(MainActivity.account.getUsername());
-        if (MainActivity.account.getId() == 1 ){
+        if (MainActivity.account.getUsername().equalsIgnoreCase("anhtuancao")){
             txtRole.setText("Admin");
         }
         else txtRole.setText("Khách hàng");

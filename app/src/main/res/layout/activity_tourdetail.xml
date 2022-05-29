@@ -62,30 +62,39 @@
             android:id="@+id/startDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:textSize="20sp"
             android:text="Ngày bắt đầu:"/>
         <TextView
             android:id="@+id/trans"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:textSize="20sp"
             android:text="Phương tiện:"/>
         <TextView
             android:id="@+id/duration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:textSize="20sp"
             android:text="Thời gian:"/>
         <TextView
             android:id="@+id/total"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:textSize="20sp"
             android:text="Chi phí:"/>
+        <Button
+            android:id="@+id/btn_place"
+            android:layout_width="132dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:text="Đặt"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edt_password" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

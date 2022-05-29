@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.db.UserSQL;
 import com.example.myapplication.model.Account;
@@ -26,20 +27,34 @@ public class DetailActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
         init();
-//        Intent i = getIntent();
+        user = (User) getIntent().getSerializableExtra("user");
         account = (Account) getIntent().getSerializableExtra("account");
-        int accountId = account.getId();
-        UserSQL userSQL = new UserSQL(getBaseContext());
-        User user = userSQL.getOne(accountId);
-        txtName.setText("Họ tên: " + user.getName());
-        txtBirth.setText("Ngày sinh: "+ user.getBirthday());
-        if(user.getGender().compareToIgnoreCase("nam") == 0) txtGender.setText("Giới tính: Nam");
-        else txtGender.setText("Giới tính: Nữ");
+        if(user!=null){
+            txtName.setText("Họ tên: " + user.getName());
+            txtBirth.setText("Ngày sinh: "+ user.getBirthday());
+            if(user.getGender().compareToIgnoreCase("nam") == 0) txtGender.setText("Giới tính: Nam");
+            else txtGender.setText("Giới tính: Nữ");
 //        im.setImageURI(Uri.parse(user.getImage()));
-        if(user.getRole() == "0"){
-            txtRole.setText("Customer");
+            if(user.getName().equalsIgnoreCase("atc") == false){
+                txtRole.setText("Chức vụ: Customer");
+            }
+            else txtRole.setText("Chức vụ: Admin");
+
         }
-        else txtRole.setText("Admin");
+        else {
+            UserSQL userSQL = new UserSQL(getBaseContext());
+            User user1 = userSQL.getOne(account.getId());
+            txtName.setText("Họ tên: " + user1.getName());
+            txtBirth.setText("Ngày sinh: "+ user1.getBirthday());
+            if(user1.getGender().compareToIgnoreCase("nam") == 0) txtGender.setText("Giới tính: Nam");
+            else txtGender.setText("Giới tính: Nữ");
+//        im.setImageURI(Uri.parse(user.getImage()));
+            if(user1.getName().equalsIgnoreCase("atc") == false){
+                txtRole.setText("Chức vụ: Customer");
+            }
+            else txtRole.setText("Chức vụ: Admin");
+        }
+
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

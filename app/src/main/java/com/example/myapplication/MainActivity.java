@@ -4,13 +4,16 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.myapplication.model.Account;
 import com.example.myapplication.model.Tour;
 import com.example.myapplication.model.User;
 import com.example.myapplication.ui.CustomerFragment;
+import com.example.myapplication.ui.EditTourActivity;
 import com.example.myapplication.ui.HomeFragment;
 import com.example.myapplication.ui.InfoFragment;
 import com.example.myapplication.ui.SearchFragment;
@@ -34,8 +37,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
-        initListener();
 
+
+        account = (Account) getIntent().getSerializableExtra("account");
+        String accountName = account.getUsername();
+        if(accountName.equalsIgnoreCase("anhtuancao")){
+            initListener();
+        }
+        else {
+            initListener();
+            bottomNavigationView.getMenu().removeItem(R.id.menu2);
+            bottomNavigationView.getMenu().removeItem(R.id.menu4);
+        }
     }
 
     private void initListener() {
@@ -45,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.menu1:
                         setCurrentFragment(homeFragment);
+//                        i.putExtra("account",account);
                         break;
                     case R.id.menu2:
                         setCurrentFragment(searchFragment);
@@ -56,8 +70,10 @@ public class MainActivity extends AppCompatActivity {
                         setCurrentFragment(infoFragment);
                         break;
                 }
+
                 return true;
             }
+
         });
         bottomNavigationView.setSelectedItemId(R.id.menu1);
 

@@ -100,10 +100,20 @@ public class SearchFragment extends Fragment implements ItemAdapter.OnItemListen
     @Override
     public void onClick(View view, int position) {
 
-        User user = adapter.getItem(position);
-        Intent intent = new Intent(getContext(), DetailActivity.class);
-        Log.d("TAGLOG", view.toString());
-        intent.putExtra("user", user);
-        getContext().startActivity(intent);
+        if (btnCus.isChecked()){
+            User user = adapter.getItem(position);
+            Intent intent = new Intent(getContext(), DetailActivity.class);
+            Log.d("TAGLOG", view.toString());
+            intent.putExtra("user", user);
+            getContext().startActivity(intent);
+        }
+        else if (btnTour.isChecked()){
+            Tour tour = tourAdapter.getItem(position);
+            Intent intent = new Intent(getContext(), DetailTourActivity.class);
+            Log.d("TAGLOG", view.toString());
+            intent.putExtra("tour", tour);
+            getContext().startActivity(intent);
+        }
+
     }
 }

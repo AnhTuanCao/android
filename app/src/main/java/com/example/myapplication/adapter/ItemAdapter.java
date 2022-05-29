@@ -55,7 +55,12 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
         User user = listUser.get(position);
         holder.txtName.setText("Họ tên: " + user.getName());
-        holder.txtPosition.setText("Chức vụ: " + user.getRole());
+        if (user.getName().equalsIgnoreCase("atc")){
+            holder.txtPosition.setText("Chức vụ: Admin" );
+        }
+        else {
+            holder.txtPosition.setText("Chức vụ: Khách hàng" );
+        }
 //        holder.img.setImageURI(Uri.parse(user.getImage())); // loi anh roi wtf v.cai uri nay` dung` nhu nao ong nhi.hay la thu comment xem co chay k :))
         if(checkSearch) {
             holder.btnEdit.setVisibility(View.GONE);

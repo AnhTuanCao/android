@@ -34,6 +34,10 @@ public class HomeFragment extends Fragment implements TourAdapter.OnItemListener
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         rcv = view.findViewById(R.id.rcv_list_item);
         btnAdd = view.findViewById(R.id.btn_add);
+        String accountName = MainActivity.account.getUsername();
+        if (accountName.equalsIgnoreCase("anhtuancao") == false){
+            btnAdd.setVisibility(View.GONE);
+        }
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -74,7 +74,6 @@ public class UserDetailActivity extends AppCompatActivity {
                 else {
                     try{
                         UserSQL helper = new UserSQL(getBaseContext());
-//                        helper.addUserAdmin("");
                         User user = new User(name,birth,gender,image,role);
                         helper.addUser(user,accountId);
                         helper.test();
